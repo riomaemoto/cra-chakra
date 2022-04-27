@@ -3,14 +3,25 @@ import { memo, ReactNode, VFC } from "react";
 
 type Props = {
   children: ReactNode;
+  disable?: boolean;
+  load?: boolean;
+  whenClick: () => void;
   // this means u need to have children in this PrimaryButton tag
 };
 
 export const PrimaryButton: VFC<Props> = memo((props) => {
-  const { children } = props;
+  const { children, disable = "false", load = "false", whenClick } = props;
+  // when adding props don't forget to add it in here too! ↑
   return (
     <>
-      <Button bg={"teal.400"} color={"white"} _hover={{ opacity: 0.8 }}>
+      <Button
+        bg={"teal.400"}
+        color={"white"}
+        _hover={{ opacity: 0.8 }}
+        disabled={disable || load}
+        isLoading={load}
+        onClick={whenClick}
+      >
         {children}
         {/* this is where children appear */}
       </Button>
