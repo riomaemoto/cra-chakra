@@ -1,8 +1,13 @@
 import { Box, Divider, Flex, Heading, Input, Stack } from "@chakra-ui/react";
-import { memo, VFC } from "react";
+import { ChangeEvent, memo, useState, VFC } from "react";
 import { PrimaryButton } from "../buttons/primary_button";
 
 export const Login: VFC = memo(() => {
+  const [userId, setUserId] = useState("");
+
+  const changeUserId = (event: ChangeEvent<HTMLInputElement>) =>
+    setUserId(event.target.value);
+
   return (
     <>
       <Flex align={"center"} justify={"center"} height={"100vh"}>
@@ -12,7 +17,11 @@ export const Login: VFC = memo(() => {
           </Heading>
           <Divider my={4} />
           <Stack spacing={6} py={4} px={10}>
-            <Input placeholder="User ID" />
+            <Input
+              placeholder="User ID"
+              value={userId}
+              onChange={changeUserId}
+            />
             <PrimaryButton>Login</PrimaryButton>
           </Stack>
         </Box>
