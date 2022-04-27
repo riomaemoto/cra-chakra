@@ -8,15 +8,12 @@ export const Header: VFC = memo(() => {
   const { onOpen, onClose, isOpen } = useDisclosure();
   const history = useHistory();
 
-  const onClickHome = useCallback(() => history.push("/home"), [history]);
-  const onClickuserManagement = useCallback(
+  const goHome = useCallback(() => history.push("/home"), [history]);
+  const goUserManagement = useCallback(
     () => history.push("/home/user_management"),
     [history]
   );
-  const onClickSetting = useCallback(
-    () => history.push("/home/setting"),
-    [history]
-  );
+  const goSetting = useCallback(() => history.push("/home/setting"), [history]);
 
   return (
     <>
@@ -33,7 +30,7 @@ export const Header: VFC = memo(() => {
           as={"a"}
           mr={"8"}
           _hover={{ cursor: "pointer" }}
-          onClick={onClickHome}
+          onClick={goHome}
         >
           <Heading as={"h1"} fontSize={{ base: "md", md: "lg" }}>
             User Account Manage App
@@ -46,13 +43,19 @@ export const Header: VFC = memo(() => {
           display={{ base: "none", md: "flex" }}
         >
           <Box pr={4}>
-            <Link onClick={onClickuserManagement}>Manage Users</Link>
+            <Link onClick={goUserManagement}>Manage Users</Link>
           </Box>
-          <Link onClick={onClickSetting}>Setting</Link>
+          <Link onClick={goSetting}>Setting</Link>
         </Flex>
-        <Hamburger onOpen={onOpen} />
+        <Hamburger whenOpen={onOpen} />
       </Flex>
-      <MenuDrawer close={onClose} hasOpen={isOpen} />
+      <MenuDrawer
+        close={onClose}
+        hasOpen={isOpen}
+        onClickHome={goHome}
+        onClickUsermanagement={goUserManagement}
+        onClickSetting={goSetting}
+      />
     </>
   );
 });
