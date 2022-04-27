@@ -4,12 +4,10 @@ import { memo, VFC } from "react";
 
 type Props = {
   onOpen: () => void;
-  // これの意味？
 };
 
 export const Hamburger: VFC<Props> = memo((props) => {
   const { onOpen } = props;
-  // const { onOpen } = useDisclosure();なぜここではこう書かないか？
   return (
     <>
       <IconButton

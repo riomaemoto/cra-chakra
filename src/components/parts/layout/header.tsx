@@ -1,20 +1,23 @@
-import {
-  Flex,
-  Heading,
-  Box,
-  Link,
-  Drawer,
-  DrawerContent,
-  DrawerOverlay,
-  DrawerBody,
-  useDisclosure,
-  Button,
-} from "@chakra-ui/react";
-import { memo, VFC } from "react";
+import { Flex, Heading, Box, Link, useDisclosure } from "@chakra-ui/react";
+import { memo, useCallback, VFC } from "react";
+import { useHistory } from "react-router-dom";
 import { Hamburger } from "../../buttons/hamburger";
+import { MenuDrawer } from "../../menu/menu_drawer";
 
 export const Header: VFC = memo(() => {
-  const { isOpen, onClose, onOpen } = useDisclosure();
+  const { onOpen, onClose, isOpen } = useDisclosure();
+  const history = useHistory();
+
+  const onClickHome = useCallback(() => history.push("/home"), [history]);
+  const onClickuserManagement = useCallback(
+    () => history.push("/home/user_management"),
+    [history]
+  );
+  const onClickSetting = useCallback(
+    () => history.push("/home/setting"),
+    [history]
+  );
+
   return (
     <>
       <Flex
@@ -25,7 +28,13 @@ export const Header: VFC = memo(() => {
         justify={"space-between"}
         padding={{ base: "3", md: "5" }}
       >
-        <Flex align={"center"} as={"a"} mr={"8"} _hover={{ cursor: "pointer" }}>
+        <Flex
+          align={"center"}
+          as={"a"}
+          mr={"8"}
+          _hover={{ cursor: "pointer" }}
+          onClick={onClickHome}
+        >
           <Heading as={"h1"} fontSize={{ base: "md", md: "lg" }}>
             User Account Manage App
           </Heading>
@@ -37,23 +46,13 @@ export const Header: VFC = memo(() => {
           display={{ base: "none", md: "flex" }}
         >
           <Box pr={4}>
-            <Link>All Users</Link>
+            <Link onClick={onClickuserManagement}>Manage Users</Link>
           </Box>
-          <Link>Setting</Link>
+          <Link onClick={onClickSetting}>Setting</Link>
         </Flex>
         <Hamburger onOpen={onOpen} />
       </Flex>
-      <Drawer placement={"left"} size={"xs"} onClose={onClose} isOpen={isOpen}>
-        <DrawerOverlay>
-          <DrawerContent>
-            <DrawerBody p={0} bg={"gray.100"}>
-              <Button w={"100%"}>Top</Button>
-              <Button w={"100%"}>All Users</Button>
-              <Button w={"100%"}>Setting</Button>
-            </DrawerBody>
-          </DrawerContent>
-        </DrawerOverlay>
-      </Drawer>
+      <MenuDrawer close={onClose} hasOpen={isOpen} />
     </>
   );
 });
