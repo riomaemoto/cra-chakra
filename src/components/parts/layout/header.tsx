@@ -1,19 +1,16 @@
 import { Flex, Heading, Box, Link, useDisclosure } from "@chakra-ui/react";
-import { memo, useCallback, VFC } from "react";
+import { VFC } from "react";
 import { useHistory } from "react-router-dom";
 import { Hamburger } from "../../buttons/hamburger";
 import { MenuDrawer } from "../../menu/menu_drawer";
 
-export const Header: VFC = memo(() => {
+export const Header: VFC = () => {
   const { onOpen, onClose, isOpen } = useDisclosure();
   const history = useHistory();
 
-  const goHome = useCallback(() => history.push("/home"), [history]);
-  const goUserManagement = useCallback(
-    () => history.push("/home/user_management"),
-    [history]
-  );
-  const goSetting = useCallback(() => history.push("/home/setting"), [history]);
+  const goHome = () => history.push("/home");
+  const goUserManagement = () => history.push("/home/user_management");
+  const goSetting = () => history.push("/home/setting");
 
   return (
     <>
@@ -58,4 +55,4 @@ export const Header: VFC = memo(() => {
       />
     </>
   );
-});
+};
