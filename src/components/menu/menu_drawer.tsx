@@ -1,4 +1,4 @@
-import { VFC, memo } from "react";
+import { VFC } from "react";
 import {
   Button,
   Drawer,
@@ -15,9 +15,13 @@ type Props = {
   onClickSetting: () => void;
 };
 
-export const MenuDrawer: VFC<Props> = memo((props) => {
-  const { close, hasOpen, onClickHome, onClickUsermanagement, onClickSetting } =
-    props;
+export const MenuDrawer: VFC<Props> = ({
+  close,
+  hasOpen,
+  onClickHome,
+  onClickUsermanagement,
+  onClickSetting,
+}) => {
   return (
     <>
       <Drawer placement={"left"} size={"xs"} onClose={close} isOpen={hasOpen}>
@@ -39,4 +43,4 @@ export const MenuDrawer: VFC<Props> = memo((props) => {
       </Drawer>
     </>
   );
-});
+};

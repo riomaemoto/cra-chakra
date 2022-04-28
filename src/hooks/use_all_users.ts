@@ -3,15 +3,15 @@ import { useCallback, useState } from "react";
 import { User } from "../types/api/user";
 import { UseMessage } from "./use_message";
 
-export const UseAllUsers = () => {
+export const useAllUsers = () => {
   const { showMessage } = UseMessage();
   const [loading, setLoading] = useState(false);
-  const [users, setUser] = useState<Array<User>>([]);
+  const [users, setUser] = useState<User[]>([]);
 
   const getUsers = useCallback(() => {
     setLoading(true);
     axios
-      .get<Array<User>>("https://jsonplaceholder.typicode.com/users")
+      .get<User[]>("https://jsonplaceholder.typicode.com/users")
       .then((res) => {
         setUser(res.data);
       })
