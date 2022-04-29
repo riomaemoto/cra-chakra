@@ -6,7 +6,7 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
-import { useCallback, useEffect, VFC } from "react";
+import { useEffect, VFC } from "react";
 import { UserCard } from "../parts/layout/card/user_card";
 import { useAllUsers } from "../../hooks/use_all_users";
 import { UserModal } from "../parts/layout/card/user_modal";
