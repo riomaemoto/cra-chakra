@@ -6,7 +6,7 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
-import { useEffect, VFC } from "react";
+import { useCallback, useEffect, VFC } from "react";
 import { UserCard } from "../parts/layout/card/user_card";
 import { useAllUsers } from "../../hooks/use_all_users";
 import { UserModal } from "../parts/layout/card/user_modal";
@@ -17,6 +17,10 @@ export const UserManegement: VFC = () => {
 
   useEffect(() => getUsers(), []);
 
+  const onClickUser = (id: number) => {
+    onOpen();
+  };
+
   return (
     <>
       {loading ? (
@@ -25,13 +29,14 @@ export const UserManegement: VFC = () => {
         </Center>
       ) : (
         <Wrap p={{ base: 4, md: 10 }} justify="center">
-          {users?.map((item) => (
+          {users?.map((item, id) => (
             <WrapItem key={item.id}>
               <UserCard
+                id={item.id}
                 imageUrl={"https://source.unsplash.com/random/" + item.id}
                 userName={item.username}
                 fullName={item.name}
-                onClick={onOpen}
+                onClick={onClickUser}
               />
             </WrapItem>
           ))}

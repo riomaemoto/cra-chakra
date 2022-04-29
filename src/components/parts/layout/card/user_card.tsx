@@ -5,13 +5,15 @@ type Propsboy = {
   imageUrl: string;
   userName: string;
   fullName: string;
-  onClick: () => void;
+  id: number;
+  onClick: (id: number) => void;
 };
 
 export const UserCard: VFC<Propsboy> = ({
   imageUrl,
   userName,
   fullName,
+  id,
   onClick,
 }) => {
   return (
@@ -24,7 +26,7 @@ export const UserCard: VFC<Propsboy> = ({
         shadow={"md"}
         p={4}
         _hover={{ cursor: "pointer", opacity: 0.8 }}
-        onClick={onClick}
+        onClick={() => onClick(id)}
       >
         <Stack textAlign={"center"}>
           <Image
