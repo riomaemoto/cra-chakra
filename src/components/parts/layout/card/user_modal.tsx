@@ -11,7 +11,7 @@ import {
   ModalOverlay,
   Stack,
 } from "@chakra-ui/react";
-import { VFC } from "react";
+import { useEffect, useState, VFC } from "react";
 import { User } from "../../../../types/api/user";
 import { PrimaryButton } from "../../../buttons/primary_button";
 
@@ -24,6 +24,18 @@ type Propsboy = {
 
 export const UserModal: VFC<Propsboy> = (Propsboy) => {
   const { user, isOpen, isAdmin = false, onClose } = Propsboy;
+
+  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+  useEffect(() => {
+    setUsername(user?.username ?? "");
+    setName(user?.name ?? "");
+    setEmail(user?.email ?? "");
+    setPhone(user?.phone ?? "");
+  }, [user]);
 
   const onClick = () => alert();
 
@@ -43,19 +55,19 @@ export const UserModal: VFC<Propsboy> = (Propsboy) => {
             <Stack spacing={4}>
               <FormControl>
                 <FormLabel>Name</FormLabel>
-                <Input value={user?.username} isReadOnly />
+                <Input value={user?.username} isReadOnly={!isAdmin} />
               </FormControl>
               <FormControl>
                 <FormLabel>Full Name</FormLabel>
-                <Input value={user?.name} isReadOnly />
+                <Input value={user?.name} isReadOnly={!isAdmin} />
               </FormControl>
               <FormControl>
                 <FormLabel>E-mail</FormLabel>
-                <Input value={user?.email} isReadOnly />
+                <Input value={user?.email} isReadOnly={!isAdmin} />
               </FormControl>
               <FormControl>
                 <FormLabel>TEL</FormLabel>
-                <Input value={user?.phone} isReadOnly />
+                <Input value={user?.phone} isReadOnly={!isAdmin} />
               </FormControl>
             </Stack>
           </ModalBody>
