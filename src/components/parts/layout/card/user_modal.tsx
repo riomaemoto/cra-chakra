@@ -6,20 +6,27 @@ import {
   ModalBody,
   ModalCloseButton,
   ModalContent,
+  ModalFooter,
   ModalHeader,
   ModalOverlay,
   Stack,
 } from "@chakra-ui/react";
 import { VFC } from "react";
 import { User } from "../../../../types/api/user";
+import { PrimaryButton } from "../../../buttons/primary_button";
 
 type Propsboy = {
   user: User | null;
   isOpen: boolean;
+  isAdmin?: boolean;
   onClose: () => void;
 };
 
-export const UserModal: VFC<Propsboy> = ({ user, isOpen, onClose }) => {
+export const UserModal: VFC<Propsboy> = (Propsboy) => {
+  const { user, isOpen, isAdmin = false, onClose } = Propsboy;
+
+  const onClick = () => alert();
+
   return (
     <>
       <Modal
@@ -29,7 +36,7 @@ export const UserModal: VFC<Propsboy> = ({ user, isOpen, onClose }) => {
         motionPreset={"slideInBottom"}
       >
         <ModalOverlay />
-        <ModalContent pb={6}>
+        <ModalContent pb={2}>
           <ModalHeader>User info</ModalHeader>
           <ModalCloseButton />
           <ModalBody mx={4}>
@@ -52,6 +59,11 @@ export const UserModal: VFC<Propsboy> = ({ user, isOpen, onClose }) => {
               </FormControl>
             </Stack>
           </ModalBody>
+          {isAdmin && (
+            <ModalFooter>
+              <PrimaryButton onClick={onClick}>Save</PrimaryButton>
+            </ModalFooter>
+          )}
         </ModalContent>
       </Modal>
       ;

@@ -28,7 +28,7 @@ export const Login: VFC = memo(() => {
             <PrimaryButton
               disable={userId === ""}
               load={loading}
-              whenClick={onClickLogin}
+              onClick={onClickLogin}
             >
               Login
             </PrimaryButton>
