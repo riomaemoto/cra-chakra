@@ -19,8 +19,7 @@ export const UserManegement: VFC = () => {
   useEffect(() => getUsers(), []);
 
   const onClickUser = (id: number) => {
-    onSelectUser({ id, users });
-    onOpen();
+    onSelectUser({ id, users, onOpen });
   };
 
   return (
@@ -44,7 +43,7 @@ export const UserManegement: VFC = () => {
           ))}
         </Wrap>
       )}
-      <UserModal isOpen={isOpen} onClose={onClose} />
+      <UserModal user={selectedUser} isOpen={isOpen} onClose={onClose} />
     </>
   );
 };

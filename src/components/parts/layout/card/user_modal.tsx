@@ -11,13 +11,15 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { VFC } from "react";
+import { User } from "../../../../types/api/user";
 
 type Propsboy = {
+  user: User | null;
   isOpen: boolean;
   onClose: () => void;
 };
 
-export const UserModal: VFC<Propsboy> = ({ isOpen, onClose }) => {
+export const UserModal: VFC<Propsboy> = ({ user, isOpen, onClose }) => {
   return (
     <>
       <Modal
@@ -34,19 +36,19 @@ export const UserModal: VFC<Propsboy> = ({ isOpen, onClose }) => {
             <Stack spacing={4}>
               <FormControl>
                 <FormLabel>Name</FormLabel>
-                <Input value={"leo"} isReadOnly />
+                <Input value={user?.username} isReadOnly />
               </FormControl>
               <FormControl>
                 <FormLabel>Full Name</FormLabel>
-                <Input value={"leo moreno"} isReadOnly />
+                <Input value={user?.name} isReadOnly />
               </FormControl>
               <FormControl>
                 <FormLabel>E-mail</FormLabel>
-                <Input value={"leo@gmakiss.com"} isReadOnly />
+                <Input value={user?.email} isReadOnly />
               </FormControl>
               <FormControl>
                 <FormLabel>TEL</FormLabel>
-                <Input value={"0987654"} isReadOnly />
+                <Input value={user?.phone} isReadOnly />
               </FormControl>
             </Stack>
           </ModalBody>
