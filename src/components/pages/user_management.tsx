@@ -17,7 +17,6 @@ export const UserManegement: VFC = () => {
   const { getUsers, loading, users } = useAllUsers();
   const { onSelectUser, selectedUser } = useSelectUsers();
   const { loginUser } = useLoginUser();
-  console.log(loginUser);
 
   useEffect(() => getUsers(), []);
 
@@ -46,7 +45,12 @@ export const UserManegement: VFC = () => {
           ))}
         </Wrap>
       )}
-      <UserModal user={selectedUser} isOpen={isOpen} onClose={onClose} />
+      <UserModal
+        user={selectedUser}
+        isOpen={isOpen}
+        isAdmin={loginUser?.isAdmin}
+        onClose={onClose}
+      />
     </>
   );
 };
