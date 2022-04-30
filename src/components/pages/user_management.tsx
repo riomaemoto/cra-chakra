@@ -11,10 +11,13 @@ import { UserCard } from "../parts/layout/card/user_card";
 import { useAllUsers } from "../../hooks/use_all_users";
 import { UserModal } from "../parts/layout/card/user_modal";
 import { useSelectUsers } from "../../hooks/useSelectUsers";
+import { useLoginUser } from "../../hooks/useLoginUser";
 export const UserManegement: VFC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { getUsers, loading, users } = useAllUsers();
   const { onSelectUser, selectedUser } = useSelectUsers();
+  const { loginUser } = useLoginUser();
+  console.log(loginUser);
 
   useEffect(() => getUsers(), []);
 
