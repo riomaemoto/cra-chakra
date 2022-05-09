@@ -9,7 +9,7 @@ import {
 
 type Props = {
   close: () => void;
-  hasOpen: boolean;
+  isOpen: boolean;
   onClickHome: () => void;
   onClickUsermanagement: () => void;
   onClickSetting: () => void;
@@ -17,14 +17,14 @@ type Props = {
 
 export const MenuDrawer: VFC<Props> = ({
   close,
-  hasOpen,
+  isOpen,
   onClickHome,
   onClickUsermanagement,
   onClickSetting,
 }) => {
   return (
     <>
-      <Drawer placement={"left"} size={"xs"} onClose={close} isOpen={hasOpen}>
+      <Drawer placement={"left"} size={"xs"} onClose={close} isOpen={isOpen}>
         <DrawerOverlay>
           <DrawerContent>
             <DrawerBody p={0} bg={"gray.100"}>

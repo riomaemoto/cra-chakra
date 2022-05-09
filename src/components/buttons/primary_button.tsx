@@ -9,7 +9,7 @@ type Props = {
   // this means u need to have children in this PrimaryButton tag
 };
 
-export const PrimaryButton: VFC<Props> = memo((props) => {
+export const PrimaryButton: VFC<Props> = (props) => {
   const { children, disable = false, load = false, onClick } = props;
   // when adding props don't forget to add it in here too! ↑
   return (
@@ -27,4 +27,4 @@ export const PrimaryButton: VFC<Props> = memo((props) => {
       </Button>
     </>
   );
-});
+};

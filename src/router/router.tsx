@@ -17,13 +17,13 @@ export const Router: VFC = memo(() => {
           path="/home"
           render={({ match: { url } }) => (
             <Switch>
-              {HomeRoutes.map((route) => (
+              {HomeRoutes.map((item) => (
                 <Route
-                  key={route.path}
-                  exact={route.exact}
-                  path={`${url}${route.path}`}
+                  key={item.path}
+                  exact={item.exact}
+                  path={`${url}${item.path}`}
                 >
-                  <HeaderLayout>{route.children}</HeaderLayout>
+                  <HeaderLayout>{item.children}</HeaderLayout>
                 </Route>
               ))}
             </Switch>

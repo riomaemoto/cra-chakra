@@ -48,7 +48,7 @@ export const Header: VFC = () => {
       </Flex>
       <MenuDrawer
         close={onClose}
-        hasOpen={isOpen}
+        isOpen={isOpen}
         onClickHome={goHome}
         onClickUsermanagement={goUserManagement}
         onClickSetting={goSetting}
